@@ -1,0 +1,84 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class=" bg-warning text-dark p-3" style=" font-family: Georgia, 'Times New Roman', Times, serif;">
+        <h1 style="color:black; text-align:center" class="display-1">Shop Bridge</h1>
+        <button (click)="logout()" class="btn btn-danger" style="display: flex;align-items: right;">Logout</button>
+        
+    </div>
+</div>
+<div class="m-4" >
+  
+  <div>
+    <button (click)="beforeadditem()" class="btn-lg" style="float: right" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Add Item</button>
+  </div>
+</div>
+<br>
+<br>
+<div style="display:block; margin-bottom: 100px;" class="mt-4 ">
+  <h1 class="mx-3 mb-3 text-center" style="margin: auto">List of Shopping Items</h1>
+  <table class="table table-hover" style="max-width: 650px; margin: auto">
+    <thead> 
+      <tr>
+        <th>Sr.no</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of allItems">
+        <td>{{ e.id }} </td>
+        <td>{{ e.name }} </td>
+        <td>{{ e.desc }} </td>
+        <td>{{ e.price }} </td>
+        <td>
+          <button (click)="onEdit(e)" class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+          <button (click)="deleteItem(e.id)" class="btn btn-outline-danger btn-sm mx-4">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>
+
+<!-- Button trigger modal
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Item Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+            <form [formGroup]="newitemform">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Name</label>
+                  <input type="text" formControlName="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <span class="help-block" *ngIf="!newitemform.get('name')?.valid && newitemform.get('name')?.touched">Name field is required</span>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Description</label>
+                  <input formControlName="desc" type="text" class="form-control" id="exampleInputPassword1">
+                  <span class="help-block" *ngIf="!newitemform.get('desc')?.valid && newitemform.get('desc')?.touched">Description field is required</span>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Price</label>
+                    <input formControlName="price" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <span class="help-block" *ngIf="!newitemform.get('price')?.valid && newitemform.get('price')?.touched">Price is required</span>
+                  </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button (click)="clearform()"  id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button *ngIf="add " type="button" [disabled]="!this.newitemform.valid" (click)="addItem()" class="btn btn-primary">Add</button>
+          <button *ngIf="!add" type="button" [disabled]="!this.newitemform.valid" (click)="updateItem()" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>

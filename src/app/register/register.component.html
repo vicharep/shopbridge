@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col d-flex justify-content-center mt-auto">
+            <div class="card content-center">
+                <div class="text-center mt-5">
+                    <h1>Register</h1>
+                    <h6>Please enter below details</h6>
+                </div>
+                <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+                    <div class="mb-3 mx-4">
+                        <label for="exampleInputEmail1" class="form-label">Fullname</label>
+                        <input formControlName="fullname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <span class="help-block" *ngIf="!registerForm.get('fullname')?.valid && this.registerForm.get('fullname')?.touched">Fullname is required</span>
+                      </div>
+                      <div class="mb-3 mx-4">
+                        <label for="exampleInputPassword1" class="form-label">Mobile no.</label>
+                        <input formControlName="mobile" type="number" class="form-control" id="exampleInputPassword1">
+                        <span class="help-block" *ngIf="!registerForm.get('mobile')?.valid && this.registerForm.get('mobile')?.touched">Mobile is required</span>
+                      </div>
+                    <div class="mb-3 mx-4">
+                      <label for="exampleInputEmail1" class="form-label">Email address</label>
+                      <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                      <span class="help-block" *ngIf="!registerForm.get('email')?.valid && this.registerForm.get('email')?.touched">Email is required</span>
+                    </div>
+                    <div class="mb-3 mx-4">
+                      <label for="exampleInputPassword1" class="form-label">Password</label>
+                      <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                      <span class="help-block" *ngIf="!registerForm.get('password')?.valid && this.registerForm.get('password')?.touched">Password is required</span>
+                    </div>
+                    <button [disabled]="!this.registerForm.valid" type="submit" class="btn btn-primary mx-4 ">Register</button>
+                    <br>
+                    <a class="mx-4 mb-2" routerLink="/login" >Already a User? Click to Login</a>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>

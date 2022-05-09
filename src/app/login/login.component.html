@@ -1,0 +1,30 @@
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col d-flex justify-content-center mt-auto">
+            <div class="card content-center">
+                <div class="text-center mt-5">
+                    <h1>Login</h1>
+                    <h6>Please enter email and password</h6>
+                </div>
+                <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                    <div class="mb-3 mx-4">
+                      <label for="exampleInputEmail1" class="form-label">Email address</label>
+                      <input formControlName="email" type="email" class="form-control" 
+                        id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                      <span class="help-block" *ngIf="!loginForm.get('email')?.valid && this.loginForm.get('email')?.touched">Email is required</span>
+                    </div>
+                    <div class="mb-3 mx-4">
+                      <label for="exampleInputPassword1" class="form-label">Password</label>
+                      <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" required>
+                      <span class="help-block" *ngIf="!loginForm.get('password')?.valid && this.loginForm.get('password')?.touched">Password is required</span>
+                    </div>
+                    <button [disabled]="!this.loginForm.valid" type="submit" class="btn btn-primary mx-4 ">Login</button>
+                    <br>
+                    <a class="mx-4 mt-4" routerLink="/register">New User? Click to Register</a>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>
